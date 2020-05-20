@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import classnames from "classnames";
+import { connect } from "react-redux";
+import { registeruser } from "../../actions/authActions";
 
 class Register extends Component {
     constructor() {
@@ -10,7 +13,7 @@ class Register extends Component {
             email: "",
             password: "",
             password2: "",
-            errors: {},
+            errors: { errors: "" },
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,6 +25,12 @@ class Register extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
+        }
+    }
+
     onSubmit(e) {
         e.preventDefault();
         const newUser = {
@@ -29,18 +38,14 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password,
         };
-        axios
-            .post("/signup", newUser)
-            .then((res) => this.setState({ errors: "" }))
-            .catch((err) => {
-                this.setState({ errors: err.response.data });
-                console.log(this.state.errors);
-            });
+
+        this.props.registeruser(newUser, this.props.history);
         console.log(newUser);
     }
 
     render() {
         const { errors } = this.state;
+        console.log(errors);
 
         return (
             <div className="register">
@@ -64,14 +69,14 @@ class Register extends Component {
                                     <input
                                         type="email"
                                         className={classnames("form-control form-control-lg", {
-                                            "is-invalid": errors.toString().includes("E11000"),
+                                            "is-invalid": errors.errors.toString().includes("E11000"),
                                         })}
                                         placeholder="Email Address"
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.onChange}
                                     />
-                                    {errors.toString().includes("E11000") && (
+                                    {errors.errors.toString().includes("E11000") && (
                                         <div className="invalid-feedback">Email already exists</div>
                                     )}
                                     <small className="form-text text-muted">
@@ -108,4 +113,15 @@ class Register extends Component {
     }
 }
 
-export default Register;
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+    errors: state.errors,
+});
+
+export default connect(mapStateToProps, { registeruser })(withRouter(Register));
