@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const registeruser = (userData, history) => (dispatch) => {
     axios
-        .post("/signup", userData)
+        .post("/api/users/signup", userData)
         .then((res) => {
             history.push("/login");
         })
