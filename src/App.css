@@ -7,17 +7,24 @@ img {
   background: url('./img/showcase.jpg') no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  margin-top: -24px;
+  height: 85vh;
   margin-bottom: -50px;
 }
+
+.auth-pages {
+  height: 85vh;
+  background: #FFe4d3;
+  color: #5a5a7a;
+  /* padding-top: 30px; */
+}
+
 
 .landing-inner {
   padding-top: 80px;
 }
 
 .dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;
   left: 0;
@@ -38,6 +45,21 @@ img {
   color: #bbb !important;
 }
 
+/* NAVBAR */
+.navbar-cust {
+  background: #5a5a7a !important;
+  color: #FEC7A7;
+}
+
+.navbar-cust a {
+  color: #FFe4d3 !important
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 
 /* .App {
   text-align: center;

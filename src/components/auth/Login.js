@@ -52,30 +52,50 @@ class Login extends Component {
         const { errors } = this.state;
         return (
             <div className="login">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-8 m-auto">
-                            <h1 className="display-4 text-center">Log In</h1>
-                            <p className="lead text-center">Sign in to your Journal account</p>
-                            <form onSubmit={this.onSubmit}>
-                                <TextFieldGroup
-                                    type="email"
-                                    error={errors.email}
-                                    placeholder="Email Address"
-                                    value={this.state.email}
-                                    onChange={this.onChange}
-                                    name="email"
-                                />
-                                <TextFieldGroup
-                                    type="password"
-                                    error={errors.password}
-                                    placeholder="Password"
-                                    value={this.state.password}
-                                    onChange={this.onChange}
-                                    name="password"
-                                />
-                                <input type="submit" className="btn btn-info btn-block mt-4" />
-                            </form>
+                <div className="auth-pages">
+                    <div className="row no-gutters align-items-center">
+                        <div className="col-sm">
+                            <div className="landing">
+                                <div className="dark-overlay landing-inner text-light">
+                                    <div className="container">
+                                        <div className="row">
+                                            <div className="col-md-12 text-center">
+                                                <h1 className="display-3 mb-4">J O U R N A L</h1>
+                                                <p className="lead">
+                                                    {" "}
+                                                    This is your life - Lets keep a track of it and lets make it
+                                                    memorable day by day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm">
+                            <div className="col-md-8 m-auto">
+                                <h1 className="display-4 text-center">Log In</h1>
+                                <p className="lead text-center">Sign in to your Journal account</p>
+                                <form onSubmit={this.onSubmit}>
+                                    <TextFieldGroup
+                                        type="email"
+                                        error={errors.email}
+                                        placeholder="Email Address"
+                                        value={this.state.email}
+                                        onChange={this.onChange}
+                                        name="email"
+                                    />
+                                    <TextFieldGroup
+                                        type="password"
+                                        error={errors.password}
+                                        placeholder="Password"
+                                        value={this.state.password}
+                                        onChange={this.onChange}
+                                        name="password"
+                                    />
+                                    <input type="submit" className="btn btn-info btn-block mt-4" />
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
