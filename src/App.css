@@ -7,15 +7,19 @@ img {
   background: url('./img/showcase.jpg') no-repeat;
   background-size: cover;
   background-position: center;
-  height: 85vh;
+  height: 88vh;
   margin-bottom: -50px;
 }
 
 .auth-pages {
-  height: 85vh;
+  height: 88vh;
   background: #FFe4d3;
   color: #5a5a7a;
   /* padding-top: 30px; */
+}
+
+.navbar {
+  padding: 0 !important;
 }
 
 

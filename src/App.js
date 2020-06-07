@@ -11,6 +11,7 @@ import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Home from "./components/home/Home";
 
 import "./App.css";
 
@@ -39,6 +40,7 @@ function App() {
                     <div className="container-fluid" style={{ padding: 0 }}>
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
+                        <Route exact path="/home" component={Home} />
                     </div>
                     <Footer />
                 </div>
