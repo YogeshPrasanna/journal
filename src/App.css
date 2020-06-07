@@ -18,6 +18,15 @@ img {
   /* padding-top: 30px; */
 }
 
+.action-pages {
+  min-height: 88vh;
+  background: #fcfbf7;
+  color: #5a5a7a;
+  /* padding-top: 30px; */
+}
+
+
+
 .navbar {
   padding: 0 !important;
 }
@@ -63,6 +72,42 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.card {
+  border-radius: 6px;
+  border: 5px solid;
+}
+
+.custom-card {
+  background: #fff1ea;
+  color: #ddd2d3;
+  padding: 0
+}
+
+.custom-card-date {
+  background: #585a79;
+  color: #ddd2d3;
+  padding: 8px;
+  margin-bottom: 0
+}
+
+.custom-card-header {
+  background: #ffe4d3;
+  color: #585a79;
+  padding: 8px;
+  margin-bottom: 0
+}
+
+.custom-card-content {
+  background: #fff1ea;
+  color: #9d96a2;
+  padding: 8px;
+  margin-bottom: 0
+}
+
+.custom-card-tags {
+  padding: 15px 8px
 }
 
 /* .App {

@@ -20,7 +20,7 @@ class Home extends Component {
         console.log(this.props.posts, this.state);
 
         return (
-            <div className="container-fluid" style={{ padding: "15px" }}>
+            <div className="container-fluid action-pages" style={{ padding: "15px" }}>
                 <div class="card-deck">
                     {this.props.posts &&
                         this.props.posts.map((post) => {
