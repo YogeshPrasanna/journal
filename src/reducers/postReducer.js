@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER_POSTS, POSTS_LOADING } from "../actions/types";
+import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST } from "../actions/types";
 
 const initialState = {
     loading: false,
@@ -17,6 +17,11 @@ export default function (state = initialState, action) {
                 ...state,
                 posts: action.payload,
                 loading: false,
+            };
+        case CREATE_POST:
+            return {
+                ...state,
+                posts: [...state.posts, action.payload],
             };
         default:
             return state;

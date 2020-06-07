@@ -8,7 +8,7 @@ const PostCards = (props) => {
     const [{ value: month }, , { value: day }, , { value: year }] = dateTimeFormat.formatToParts(date);
 
     return (
-        <div className="card bg-light mb-3" style={{ maxWidth: "18rem" }}>
+        <div className="card bg-light" style={{ minWidth: "15rem" }}>
             <div className="card-body custom-card">
                 <h4 className="custom-card-date">{`${day} ${month} ${year}`}</h4>
                 <h5 className="card-title custom-card-header">{props.postHeader}</h5>
@@ -19,7 +19,7 @@ const PostCards = (props) => {
                             <span
                                 style={{
                                     color: "#fff",
-                                    backgroundColor: "grey",
+                                    backgroundColor: "#bdb3b1",
                                     padding: "5px",
                                     marginRight: "5px",
                                     borderRadius: "5px",

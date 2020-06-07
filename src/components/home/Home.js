@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentUsersPosts } from "../../actions/postActions";
 import PostCards from "./PostCards";
+import CreatePost from "./CreatePost";
 
 class Home extends Component {
     constructor() {
@@ -20,7 +21,8 @@ class Home extends Component {
         console.log(this.props.posts, this.state);
 
         return (
-            <div className="container-fluid action-pages" style={{ padding: "15px" }}>
+            <div className="container-fluid action-pages">
+                <CreatePost user={this.props.user} />
                 <div class="card-deck">
                     {this.props.posts &&
                         this.props.posts.map((post) => {
