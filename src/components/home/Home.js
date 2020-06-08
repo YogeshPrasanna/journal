@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentUsersPosts } from "../../actions/postActions";
 import PostCards from "./PostCards";
@@ -18,22 +17,11 @@ class Home extends Component {
     }
 
     render() {
-        console.log(this.props.posts, this.state);
-
         return (
             <div className="container-fluid action-pages">
                 <CreatePost user={this.props.user} />
                 <div class="card-deck">
-                    {this.props.posts &&
-                        this.props.posts.map((post) => {
-                            return (
-                                <PostCards
-                                    postHeader={post.postHeader}
-                                    postContent={post.postContent}
-                                    tags={post.postHashtags}
-                                />
-                            );
-                        })}
+                    <PostCards />
                 </div>
             </div>
         );

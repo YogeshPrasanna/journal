@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST } from "./types";
+import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST, DELETE_POST } from "./types";
 
 // Get Current Users POSTS_LOADING
 export const getCurrentUsersPosts = () => (dispatch) => {
@@ -25,7 +25,6 @@ export const createPost = (postData) => (dispatch) => {
     axios
         .post("/api/posts", postData)
         .then((res) => {
-            console.log(res);
             dispatch({
                 type: CREATE_POST,
                 payload: res.data,
@@ -35,6 +34,26 @@ export const createPost = (postData) => (dispatch) => {
             console.log(err);
             dispatch({
                 type: CREATE_POST,
+                payload: {},
+            });
+        });
+};
+
+// delete a post
+export const deletePost = (id) => (dispatch) => {
+    axios
+        .delete(`/api/posts/${id}`)
+        .then((res) => {
+            console.log(res);
+            dispatch({
+                type: DELETE_POST,
+                payload: id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({
+                type: DELETE_POST,
                 payload: {},
             });
         });
