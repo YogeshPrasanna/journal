@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost } from "../../actions/postActions";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 class CreatePost extends Component {
     constructor() {
@@ -106,12 +108,37 @@ class CreatePost extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-8 create-post-right-section pad15">
-                        <textarea
+                    <div className="col-sm-8 create-post-right-section">
+                        {/* <textarea
                             className="form-control form-control-lg"
                             placeholder="Okay how good was your day !!"
                             onChange={this.postContentChange}
                             value={this.state.postContent}
+                        /> */}
+
+                        <CKEditor
+                            editor={ClassicEditor}
+                            data=""
+                            config={{
+                                placeholder: "Okay how good was your day !!",
+                            }}
+                            onInit={(editor) => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log("Editor is ready to use!", editor);
+                            }}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                console.log({ event, editor, data });
+                                this.setState({
+                                    postContent: data,
+                                });
+                            }}
+                            onBlur={(event, editor) => {
+                                console.log("Blur.", editor);
+                            }}
+                            onFocus={(event, editor) => {
+                                console.log("Focus.", editor);
+                            }}
                         />
 
                         {this.state.postHeader && this.state.postContent && (

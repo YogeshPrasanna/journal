@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCurrentUsersPosts } from "../../actions/postActions";
 import { deletePost } from "../../actions/postActions";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 class PostCards extends Component {
     constructor() {
@@ -54,7 +56,34 @@ class PostCards extends Component {
                             </span>
                         </h4>
                         <h5 className="card-title custom-card-header">{post.postHeader}</h5>
-                        <p className="card-text custom-card-content">{post.postContent}</p>
+                        <p className="card-text custom-card-content">
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={post.postContent}
+                                disabled={true}
+                                config={{
+                                    toolbar: [],
+                                }}
+                                onInit={(editor) => {
+                                    // You can store the "editor" and use when it is needed.
+                                    console.log("Editor is ready to use!", editor);
+                                }}
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                    console.log({ event, editor, data });
+                                    this.setState({
+                                        postContent: data,
+                                    });
+                                }}
+                                onBlur={(event, editor) => {
+                                    console.log("Blur.", editor);
+                                }}
+                                onFocus={(event, editor) => {
+                                    console.log("Focus.", editor);
+                                }}
+                            />
+                            {/* {post.postContent} */}
+                        </p>
                         <div className="custom-card-tags">
                             {post.postHashtags.map((elem) => {
                                 return (
