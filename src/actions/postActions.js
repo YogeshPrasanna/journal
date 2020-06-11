@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST, DELETE_POST } from "./types";
+import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST, DELETE_POST, SHOW_MODAL } from "./types";
 
 // Get Current Users POSTS_LOADING
 export const getCurrentUsersPosts = () => (dispatch) => {
@@ -57,6 +57,13 @@ export const deletePost = (id) => (dispatch) => {
                 payload: {},
             });
         });
+};
+
+export const shouldShowModal = (shouldShowModal, postId) => (dispatch) => {
+    return dispatch({
+        type: SHOW_MODAL,
+        payload: { shouldShowModal, postId },
+    });
 };
 
 // posts Loading

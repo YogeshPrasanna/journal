@@ -30,7 +30,7 @@ img {
     background: #ffe4d3;
 }
 
-.ck.ck-editor__main > .ck-editor__editable {
+.ck.ck-editor__main>.ck-editor__editable {
     background-color: #fcfbf7 !important;
 }
 
@@ -105,7 +105,7 @@ footer {
 .card {
     border-radius: 6px;
     border: 5px solid;
-    margin: 15px !important;
+    margin: 7px !important;
 }
 
 .card-deck {

@@ -43,7 +43,7 @@ class CreatePost extends Component {
             postContent: e.target.value,
         });
 
-        console.log(this.state);
+        //console.log(this.state);
     }
 
     memorablePostChange(e) {
@@ -51,7 +51,7 @@ class CreatePost extends Component {
         this.setState({
             memorablePost: e.target.checked,
         });
-        console.log(this.state.memorablePost);
+        //console.log(this.state.memorablePost);
     }
 
     onSubmit() {
@@ -93,13 +93,13 @@ class CreatePost extends Component {
                             name="postHeader"
                         />
 
-                        <div class="row" style={{ padding: "15px 0" }}>
+                        <div className="row" style={{ padding: "15px 0" }}>
                             <div className="col-sm-2">
                                 <input
                                     type="checkbox"
                                     className="form-control form-control-lg"
                                     checked={this.state.memorablePost}
-                                    onClick={this.memorablePostChange}
+                                    onChange={this.memorablePostChange}
                                     name="memorablePost"
                                 />
                             </div>

@@ -20,7 +20,7 @@ class Home extends Component {
         return (
             <div className="container-fluid action-pages">
                 <CreatePost user={this.props.user} />
-                <div class="card-deck">
+                <div className="card-deck">
                     <PostCards />
                 </div>
             </div>
