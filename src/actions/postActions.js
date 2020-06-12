@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST, DELETE_POST, SHOW_MODAL } from "./types";
+import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST, DELETE_POST, EDIT_POST, SHOW_MODAL } from "./types";
 
 // Get Current Users POSTS_LOADING
 export const getCurrentUsersPosts = () => (dispatch) => {
@@ -34,6 +34,25 @@ export const createPost = (postData) => (dispatch) => {
             console.log(err);
             dispatch({
                 type: CREATE_POST,
+                payload: {},
+            });
+        });
+};
+
+// edit a post
+export const editPost = (id, updatedData) => (dispatch) => {
+    axios
+        .put(`/api/posts/${id}`, updatedData)
+        .then((res) => {
+            dispatch({
+                type: EDIT_POST,
+                payload: res.data,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({
+                type: EDIT_POST,
                 payload: {},
             });
         });

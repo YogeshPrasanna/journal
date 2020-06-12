@@ -1,4 +1,11 @@
-import { GET_CURRENT_USER_POSTS, POSTS_LOADING, CREATE_POST, DELETE_POST, SHOW_MODAL } from "../actions/types";
+import {
+    GET_CURRENT_USER_POSTS,
+    POSTS_LOADING,
+    CREATE_POST,
+    DELETE_POST,
+    EDIT_POST,
+    SHOW_MODAL,
+} from "../actions/types";
 
 const initialState = {
     loading: false,
@@ -29,6 +36,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 posts: state.posts.filter((el) => el._id !== action.payload),
+            };
+        case EDIT_POST:
+            console.log(action.payload);
+            return {
+                ...state,
+                posts: [...state.posts.filter((el) => el._id !== action.payload._id), action.payload],
             };
         case SHOW_MODAL:
             return {
