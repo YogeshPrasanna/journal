@@ -9,14 +9,23 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 // import ModalBody from "react-bootstrap/ModalBody";
 
 class PostCards extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        const editedPost =
+            (props.posts &&
+                props.editPostId &&
+                props.posts.filter((elem) => {
+                    return elem._id === props.editPostId;
+                })[0]) ||
+            "";
+
         this.state = {
             posts: [],
-            postId: "",
-            postContent: "",
-            postHeader: "",
-            postMood: {
+            postId: editedPost._id || "",
+            postContent: editedPost.postContent || "",
+            postHeader: editedPost.postHeader || "",
+            postMood: editedPost.postMood || {
                 happy: false,
                 sad: false,
                 funny: false,
@@ -28,12 +37,15 @@ class PostCards extends Component {
                 angry: false,
                 calm: false,
             },
-            postHashtags: [],
-            memorablePost: false,
+            postHashtags: editedPost.postHashtags || [],
+            memorablePost: editedPost.memorablePost || false,
             // modalShow: false,
         };
+
+        console.log("STATE : ", this.state);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.memorablePostChange = this.memorablePostChange.bind(this);
     }
 
     onSubmit(e) {
@@ -47,11 +59,6 @@ class PostCards extends Component {
             postDate: new Date(),
         });
         this.props.onHide();
-        this.setState({
-            postHeader: "",
-            postContent: "",
-        });
-
         console.log(this.state.postContent, "form submitted");
     }
 
@@ -62,31 +69,65 @@ class PostCards extends Component {
         });
     }
 
-    static getDerivedStateFromProps(props, state) {
+    memorablePostChange(e) {
+        console.log("$$$$$$$$", e.target.checked);
+        this.setState({
+            memorablePost: e.target.checked,
+        });
+    }
+
+    componentDidUpdate(nextProps, nextState) {
+        // console.log("compnentDidUpdate : ", nextProps, nextState);
+        console.log(nextProps.editPostId, this.state.postId);
+
         const editedPost =
-            (props.posts &&
-                props.editPostId &&
-                props.posts.filter((elem) => {
-                    return elem._id === props.editPostId;
+            (nextProps.posts &&
+                nextProps.editPostId &&
+                nextProps.posts.filter((elem) => {
+                    return elem._id === nextProps.editPostId;
                 })[0]) ||
             "";
 
-        if (state.postHeader) {
-            return;
-        }
-
         if (editedPost) {
-            return {
-                postId: editedPost._id,
-                postHeader: editedPost.postHeader,
-                postContent: editedPost.postContent,
-                postMood: editedPost.postMood,
-                postHashtags: editedPost.postHashtags,
-                memorablePost: editedPost.memorablePost,
-            };
+            console.log(nextProps.editPostId, this.state.postId);
+            if (nextProps.editPostId !== this.state.postId)
+                return this.setState({
+                    postId: editedPost._id,
+                    postHeader: editedPost.postHeader,
+                    postContent: editedPost.postContent,
+                    postMood: editedPost.postMood,
+                    postHashtags: editedPost.postHashtags,
+                    memorablePost: editedPost.memorablePost,
+                });
         }
-        console.log(props, state);
     }
+
+    // static getDerivedStateFromProps(props, state) {
+    //     console.log("--------------");
+    //     const editedPost =
+    //         (props.posts &&
+    //             props.editPostId &&
+    //             props.posts.filter((elem) => {
+    //                 return elem._id === props.editPostId;
+    //             })[0]) ||
+    //         "";
+
+    //     if (state.postHeader) {
+    //         return;
+    //     }
+
+    //     if (editedPost) {
+    //         return {
+    //             postId: editedPost._id,
+    //             postHeader: editedPost.postHeader,
+    //             postContent: editedPost.postContent,
+    //             postMood: editedPost.postMood,
+    //             postHashtags: editedPost.postHashtags,
+    //             memorablePost: editedPost.memorablePost,
+    //         };
+    //     }
+    //     console.log(props, state);
+    // }
 
     render() {
         const editedPost =
@@ -118,36 +159,52 @@ class PostCards extends Component {
                                 value={this.state.postHeader}
                                 className="form-control form-control-lg"
                                 onChange={this.onChange}
-                                name="postHeader1"
+                                name="postHeader"
                             />
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={editedPost.postContent}
                                 onInit={(editor) => {
                                     // You can store the "editor" and use when it is needed.
-                                    console.log("Editor is ready to use!", editor);
+                                    //console.log("Editor is ready to use!", editor);
                                 }}
                                 onChange={(event, editor) => {
                                     const data = editor.getData();
-                                    console.log({ event, editor, data });
+                                    //console.log({ event, editor, data });
                                     this.setState({
                                         postContent: data,
                                     });
                                 }}
                                 onBlur={(event, editor) => {
-                                    console.log("Blur.", editor);
+                                    //console.log("Blur.", editor);
                                 }}
                                 onFocus={(event, editor) => {
-                                    console.log("Focus.", editor);
+                                    //console.log("Focus.", editor);
                                 }}
                             />
+                            <div className="row" style={{ padding: "15px 0" }}>
+                                <div className="col-sm-2">
+                                    <input
+                                        type="checkbox"
+                                        className="form-control form-control-lg"
+                                        checked={this.state.memorablePost}
+                                        onChange={this.memorablePostChange}
+                                        name="memorablePost"
+                                    />
+                                </div>
+                                <div className="col-sm-10" style={{ paddingTop: "6px" }}>
+                                    <h4>Was today a memorable Day ?</h4>
+                                </div>
+                            </div>
                         </form>
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <button type="submit" onClick={this.onSubmit}>
-                        Close
-                    </button>
+                    {this.state.postHeader && this.state.postContent && (
+                        <button type="submit" onClick={this.onSubmit}>
+                            Close
+                        </button>
+                    )}
                 </Modal.Footer>
             </Modal>
         );
