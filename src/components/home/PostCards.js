@@ -5,6 +5,7 @@ import { deletePost } from "../../actions/postActions";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import EditPostModalPopup from "./EditPostModalPopup";
+import MemorablePost from "./MemorablePost";
 // import ModalDialog from "react-bootstrap/ModalDialog";
 // import Modal from "react-bootstrap/Modal";
 // import ModalHeader from "react-bootstrap/ModalHeader";
@@ -135,6 +136,7 @@ class PostCards extends Component {
                                         />
                                         {/* {post.postContent} */}
                                     </div>
+                                    <MemorablePost memorablePost={post.memorablePost} />
                                     <div className="custom-card-tags">
                                         {post.postHashtags.map((elem, i) => {
                                             return (
