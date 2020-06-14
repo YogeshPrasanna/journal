@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { createPost } from "../../actions/postActions";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css"; // If using WebPack and style-loader.
 
 class CreatePost extends Component {
     constructor() {
@@ -29,6 +31,7 @@ class CreatePost extends Component {
         this.postHeaderChange = this.postHeaderChange.bind(this);
         this.postContentChange = this.postContentChange.bind(this);
         this.memorablePostChange = this.memorablePostChange.bind(this);
+        this.handleHashtagsChange = this.handleHashtagsChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -36,6 +39,10 @@ class CreatePost extends Component {
         this.setState({
             postHeader: e.target.value,
         });
+    }
+
+    handleHashtagsChange(postHashtags) {
+        this.setState({ postHashtags });
     }
 
     postContentChange(e) {
@@ -76,17 +83,23 @@ class CreatePost extends Component {
         });
     }
 
+    inputProps() {
+        return {
+            placeholder: "Hashtags",
+        };
+    }
+
     render() {
         return (
             <div className="container-fluid create-post-section">
                 <div className="row no-gutters">
                     <div className="col-sm-4 create-post-left-section pad15">
-                        <h3> Hello {this.props.auth.user.name} !!</h3>
-                        <h5> Hope it was a good day </h5>
+                        <h3 style={{ display: "inline-block" }}> Hello {this.props.auth.user.name}, &nbsp; </h3>
+                        <h5 style={{ display: "inline-block" }}> Hope it was a good day </h5>
                         <hr />
                         <input
                             type="text"
-                            className="form-control form-control-lg"
+                            className="form-control form-control-md"
                             placeholder="Brief description of your day... !!"
                             value={this.state.postHeader}
                             onChange={this.postHeaderChange}
@@ -94,6 +107,13 @@ class CreatePost extends Component {
                         />
 
                         <div className="row" style={{ padding: "15px 0" }}>
+                            <div className="col-sm-12" style={{ paddingTop: "6px", marginBottom: "15px" }}>
+                                <TagsInput
+                                    value={this.state.postHashtags}
+                                    onChange={this.handleHashtagsChange}
+                                    inputProps={this.inputProps()}
+                                />
+                            </div>
                             <div className="col-sm-2">
                                 <input
                                     type="checkbox"
@@ -109,22 +129,11 @@ class CreatePost extends Component {
                         </div>
                     </div>
                     <div className="col-sm-8 create-post-right-section">
-                        {/* <textarea
-                            className="form-control form-control-lg"
-                            placeholder="Okay how good was your day !!"
-                            onChange={this.postContentChange}
-                            value={this.state.postContent}
-                        /> */}
-
                         <CKEditor
                             editor={ClassicEditor}
                             data=""
                             config={{
                                 placeholder: "Okay how good was your day !!",
-                            }}
-                            onInit={(editor) => {
-                                // You can store the "editor" and use when it is needed.
-                                //console.log("Editor is ready to use!", editor);
                             }}
                             onChange={(event, editor) => {
                                 const data = editor.getData();
@@ -132,12 +141,6 @@ class CreatePost extends Component {
                                 this.setState({
                                     postContent: data,
                                 });
-                            }}
-                            onBlur={(event, editor) => {
-                                //console.log("Blur.", editor);
-                            }}
-                            onFocus={(event, editor) => {
-                                //console.log("Focus.", editor);
                             }}
                         />
 

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCurrentUsersPosts, editPost } from "../../actions/postActions";
-// import ModalDialog from "react-bootstrap/ModalDialog";
 import Modal from "react-bootstrap/Modal";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-// import ModalHeader from "react-bootstrap/ModalHeader";
-// import ModalBody from "react-bootstrap/ModalBody";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css"; // If using WebPack and style-loader.
 
 class PostCards extends Component {
     constructor(props) {
@@ -46,6 +45,7 @@ class PostCards extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.memorablePostChange = this.memorablePostChange.bind(this);
+        this.handleHashtagsChange = this.handleHashtagsChange.bind(this);
     }
 
     onSubmit(e) {
@@ -100,6 +100,16 @@ class PostCards extends Component {
                     memorablePost: editedPost.memorablePost,
                 });
         }
+    }
+
+    handleHashtagsChange(postHashtags) {
+        this.setState({ postHashtags });
+    }
+
+    inputProps() {
+        return {
+            placeholder: "Hashtags",
+        };
     }
 
     // static getDerivedStateFromProps(props, state) {
@@ -164,25 +174,21 @@ class PostCards extends Component {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={editedPost.postContent}
-                                onInit={(editor) => {
-                                    // You can store the "editor" and use when it is needed.
-                                    //console.log("Editor is ready to use!", editor);
-                                }}
                                 onChange={(event, editor) => {
                                     const data = editor.getData();
-                                    //console.log({ event, editor, data });
                                     this.setState({
                                         postContent: data,
                                     });
                                 }}
-                                onBlur={(event, editor) => {
-                                    //console.log("Blur.", editor);
-                                }}
-                                onFocus={(event, editor) => {
-                                    //console.log("Focus.", editor);
-                                }}
                             />
                             <div className="row" style={{ padding: "15px 0" }}>
+                                <div className="col-sm-12" style={{ paddingTop: "6px", marginBottom: "15px" }}>
+                                    <TagsInput
+                                        value={this.state.postHashtags}
+                                        onChange={this.handleHashtagsChange}
+                                        inputProps={this.inputProps()}
+                                    />
+                                </div>
                                 <div className="col-sm-2">
                                     <input
                                         type="checkbox"

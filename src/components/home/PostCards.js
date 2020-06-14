@@ -116,10 +116,6 @@ class PostCards extends Component {
                                             config={{
                                                 toolbar: [],
                                             }}
-                                            onInit={(editor) => {
-                                                // You can store the "editor" and use when it is needed.
-                                                //console.log("Editor is ready to use!", editor);
-                                            }}
                                             onChange={(event, editor) => {
                                                 const data = editor.getData();
                                                 //console.log({ event, editor, data });
@@ -127,28 +123,16 @@ class PostCards extends Component {
                                                     postContent: data,
                                                 });
                                             }}
-                                            onBlur={(event, editor) => {
-                                                //console.log("Blur.", editor);
-                                            }}
-                                            onFocus={(event, editor) => {
-                                                //console.log("Focus.", editor);
-                                            }}
                                         />
-                                        {/* {post.postContent} */}
                                     </div>
                                     <MemorablePost memorablePost={post.memorablePost} />
                                     <div className="custom-card-tags">
                                         {post.postHashtags.map((elem, i) => {
                                             return (
                                                 <span
+                                                    className="badge badge-pill badge-info"
+                                                    style={{ margin: "2px 4px", padding: "5px", borderRadius: "5px" }}
                                                     key={i}
-                                                    style={{
-                                                        color: "#fff",
-                                                        backgroundColor: "#bdb3b1",
-                                                        padding: "5px",
-                                                        marginRight: "5px",
-                                                        borderRadius: "5px",
-                                                    }}
                                                 >
                                                     #{elem}
                                                 </span>
