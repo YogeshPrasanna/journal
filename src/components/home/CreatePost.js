@@ -131,7 +131,7 @@ class CreatePost extends Component {
                     <div className="col-sm-8 create-post-right-section">
                         <CKEditor
                             editor={ClassicEditor}
-                            data=""
+                            data={this.state.postContent}
                             config={{
                                 placeholder: "Okay how good was your day !!",
                             }}
@@ -145,7 +145,7 @@ class CreatePost extends Component {
                         />
 
                         {this.state.postHeader && this.state.postContent && (
-                            <button value="submit" onClick={this.onSubmit}>
+                            <button value="submit" className="btn save-btn" onClick={this.onSubmit}>
                                 Save
                             </button>
                         )}

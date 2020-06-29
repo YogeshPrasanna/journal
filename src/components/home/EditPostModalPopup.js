@@ -207,8 +207,8 @@ class PostCards extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     {this.state.postHeader && this.state.postContent && (
-                        <button type="submit" onClick={this.onSubmit}>
-                            Close
+                        <button type="submit" className="btn save-btn" onClick={this.onSubmit}>
+                            Save
                         </button>
                     )}
                 </Modal.Footer>
