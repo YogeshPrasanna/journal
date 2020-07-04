@@ -156,41 +156,48 @@ footer {
     letter-spacing: 2px;
 }
 
-/* .App {
-  text-align: center;
+/* Media Queries for mobile */
+@media only screen and (min-width:320px) and (max-width: 641px) {
+
+    /* smartphones, iPhone, portrait 480x320 phones */
+    .landing {
+        height: 44vh;
+        margin-bottom: 0px;
+    }
+
+    footer {
+        position: fixed;
+    }
+
+    .auth-pages {
+        height: 110vh;
+    }
+
+    .navbar-toggler {
+        color: #ffe4d3 !important;
+    }
+
+    .navbar.container {
+        padding: 2px 10px;
+    }
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@media (min-width:481px) {
+    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@media (min-width:641px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@media (min-width:961px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
 }
 
-.App-link {
-  color: #61dafb;
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+@media (min-width:1281px) {
+    /* hi-res laptops and desktops */
+}

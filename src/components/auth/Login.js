@@ -54,13 +54,19 @@ class Login extends Component {
             <div className="login">
                 <div className="auth-pages">
                     <div className="row no-gutters align-items-center">
-                        <div className="col-sm">
+                        <div className="col-sm-6">
                             <div className="landing">
                                 <div className="dark-overlay landing-inner text-light">
                                     <div className="container">
                                         <div className="row">
                                             <div className="col-md-12 text-center">
-                                                <h1 className="display-3 mb-4">J O U R N A L</h1>
+                                                <h1
+                                                    className={
+                                                        window.screen.width > 641 ? "display-3 mb-4" : "display-4 md-4"
+                                                    }
+                                                >
+                                                    J O U R N A L
+                                                </h1>
                                                 <p className="lead">
                                                     {" "}
                                                     This is your life - Lets keep a track of it and lets make it
@@ -72,7 +78,7 @@ class Login extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-sm">
+                        <div className="col-sm-6">
                             <div className="col-md-8 m-auto">
                                 <h1 className="display-4 text-center">Log In</h1>
                                 <p className="lead text-center">Sign in to your Journal account</p>
