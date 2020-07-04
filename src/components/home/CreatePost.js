@@ -32,6 +32,7 @@ class CreatePost extends Component {
         this.postContentChange = this.postContentChange.bind(this);
         this.memorablePostChange = this.memorablePostChange.bind(this);
         this.handleHashtagsChange = this.handleHashtagsChange.bind(this);
+        this.postMoodChange = this.postMoodChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -59,6 +60,16 @@ class CreatePost extends Component {
             memorablePost: e.target.checked,
         });
         //console.log(this.state.memorablePost);
+    }
+
+    postMoodChange(e) {
+        let name = e.target.name.split("-")[1];
+        let isChecked = e.target.checked;
+        this.setState((prevState) => {
+            let postMood = Object.assign({}, prevState.postMood); // creating copy of state variable jasper
+            postMood[name] = isChecked; // update the name property, assign a new value
+            return { postMood }; // return new object jasper object
+        });
     }
 
     onSubmit() {
@@ -114,18 +125,20 @@ class CreatePost extends Component {
                                     inputProps={this.inputProps()}
                                 />
                             </div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-12">
                                 <input
                                     type="checkbox"
                                     className="form-control form-control-lg"
                                     checked={this.state.memorablePost}
                                     onChange={this.memorablePostChange}
                                     name="memorablePost"
+                                    style={{ display: "inline", width: "45px" }}
                                 />
+                                <h4 className="memorablePostLabel">Was today a memorable Day ?</h4>
                             </div>
-                            <div className="col-sm-10" style={{ paddingTop: "6px" }}>
-                                <h4>Was today a memorable Day ?</h4>
-                            </div>
+                            {/* <div className="col-sm-10" style={{ paddingTop: "6px" }}>
+                                
+                            </div> */}
                         </div>
                     </div>
                     <div className="col-sm-8 create-post-right-section">
@@ -143,6 +156,158 @@ class CreatePost extends Component {
                                 });
                             }}
                         />
+                        <div className="row mood-section">
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.angry}
+                                    onChange={this.postMoodChange}
+                                    name="mood-angry"
+                                    id="angry"
+                                />
+                                <label htmlFor="angry" className="emoji">
+                                    <span role="img" aria-label="angry">
+                                        😠😡
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.blessed}
+                                    onChange={this.postMoodChange}
+                                    name="mood-blessed"
+                                    id="blessed"
+                                />
+                                <label htmlFor="blessed" className="emoji">
+                                    <span role="img" aria-label="blessed">
+                                        😇🛕
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.bored}
+                                    onChange={this.postMoodChange}
+                                    name="mood-bored"
+                                    id="bored"
+                                />
+                                <label htmlFor="bored" className="emoji">
+                                    <span role="img" aria-label="bored">
+                                        🥱💤
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.calm}
+                                    onChange={this.postMoodChange}
+                                    name="mood-calm"
+                                    id="calm"
+                                />
+                                <label htmlFor="calm" className="emoji">
+                                    <span role="img" aria-label="calm">
+                                        😌🧘🏼‍♂️
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.crying}
+                                    onChange={this.postMoodChange}
+                                    name="mood-crying"
+                                    id="crying"
+                                />
+                                <label htmlFor="crying" className="emoji">
+                                    <span role="img" aria-label="crying">
+                                        😢😭
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.funny}
+                                    onChange={this.postMoodChange}
+                                    name="mood-funny"
+                                    id="funny"
+                                />
+                                <label htmlFor="funny" className="emoji">
+                                    <span role="img" aria-label="funny">
+                                        🥳🤩
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.happy}
+                                    onChange={this.postMoodChange}
+                                    name="mood-happy"
+                                    id="happy"
+                                />
+                                <label htmlFor="happy" className="emoji">
+                                    <span role="img" aria-label="happy">
+                                        😀🙂
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.love}
+                                    onChange={this.postMoodChange}
+                                    name="mood-love"
+                                    id="love"
+                                />
+                                <label htmlFor="love" className="emoji">
+                                    <span role="img" aria-label="love">
+                                        😍❤️
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.sad}
+                                    onChange={this.postMoodChange}
+                                    name="mood-sad"
+                                    id="sad"
+                                />
+                                <label htmlFor="sad" className="emoji">
+                                    <span role="img" aria-label="sad">
+                                        😞😟
+                                    </span>
+                                </label>
+                            </span>
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    className="form-control form-control-lg"
+                                    checked={this.state.postMood.tired}
+                                    onChange={this.postMoodChange}
+                                    name="mood-tired"
+                                    id="tired"
+                                />
+                                <label htmlFor="tired" className="emoji">
+                                    <span role="img" aria-label="tired">
+                                        🤒🩺
+                                    </span>
+                                </label>
+                            </span>
+                        </div>
 
                         {this.state.postHeader && this.state.postContent && (
                             <button value="submit" className="btn save-btn" onClick={this.onSubmit}>

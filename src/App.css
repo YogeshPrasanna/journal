@@ -26,7 +26,7 @@ img {
 }
 
 .create-post-section .ck-editor__editable_inline {
-    height: 250px;
+    height: 200px;
     background: #ffe4d3;
 }
 
@@ -146,6 +146,13 @@ footer {
     padding: 15px !important;
 }
 
+.memorablePostLabel {
+    display: inline;
+    position: relative;
+    top: -15px !important;
+    left: 10px;
+}
+
 .save-btn {
     background: #5A5A7A;
     color: #ffe4d3 !important;
@@ -154,6 +161,38 @@ footer {
     float: right;
     font-weight: bold;
     letter-spacing: 2px;
+}
+
+.mood-section {
+    margin: 5px 10px 0 10px;
+}
+
+.mood-section .emoji {
+    font-size: 1.5em;
+}
+
+.mood-section input[type="checkbox"]:not(:checked),
+.mood-section input[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999%;
+}
+
+.mood-section input[type="checkbox"]+label {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50px;
+    /* border: 1px solid black; */
+    color: black;
+    /* background-color: white; */
+    margin-bottom: 10px;
+}
+
+.mood-section input[type="checkbox"]:checked+label {
+    border: 1px solid white;
+    color: white;
+    background-color: #f3c3a5;
+    ;
 }
 
 /* Media Queries for mobile */
