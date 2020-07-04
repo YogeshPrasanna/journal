@@ -51,7 +51,7 @@ class Navbar extends Component {
 
         return (
             <nav className="navbar navbar-expand-sm navbar-cust ">
-                <div className="container">
+                <div className="container-fluid">
                     <Link className="navbar-brand" to="/">
                         J O U R N A L
                     </Link>

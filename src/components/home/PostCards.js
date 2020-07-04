@@ -57,6 +57,19 @@ class PostCards extends Component {
                         const [{ value: month }, , { value: day }, , { value: year }] = dateTimeFormat.formatToParts(
                             date
                         );
+                        const postMoods = {
+                            angry: "😠😡",
+                            blessed: "😇🛕",
+                            bored: "🥱💤",
+                            calm: "😌🧘🏼‍♂️",
+                            crying: "😢😭",
+                            funny: "🥳🤩",
+                            happy: "😀🙂",
+                            love: "😍❤️",
+                            sad: "😞😟",
+                            tired: "🤒🩺",
+                        };
+                        const postMoodObj = post.postMood;
 
                         return (
                             <div className="card bg-light" key={post._id} style={{ minWidth: "15rem" }}>
@@ -126,6 +139,19 @@ class PostCards extends Component {
                                         />
                                     </div>
                                     <MemorablePost memorablePost={post.memorablePost} />
+                                    <div className="moodSection">
+                                        {Object.keys(postMoodObj).map(function (key) {
+                                            return postMoodObj[key] ? (
+                                                <span
+                                                    value={key}
+                                                    className="emoji postEmoji postEmojiActive"
+                                                    style={{ margin: "5px" }}
+                                                >
+                                                    {postMoods[key]}
+                                                </span>
+                                            ) : null;
+                                        })}
+                                    </div>
                                     <div className="custom-card-tags">
                                         {post.postHashtags.map((elem, i) => {
                                             return (

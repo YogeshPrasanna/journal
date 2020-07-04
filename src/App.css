@@ -8,7 +8,7 @@ img {
     background-size: cover;
     background-position: center;
     height: 88vh;
-    margin-bottom: -50px;
+    margin-bottom: -4px;
 }
 
 .auth-pages {
@@ -167,7 +167,8 @@ footer {
     margin: 5px 10px 0 10px;
 }
 
-.mood-section .emoji {
+.mood-section .emoji,
+.emoji {
     font-size: 1.5em;
 }
 
@@ -177,7 +178,8 @@ footer {
     left: -9999%;
 }
 
-.mood-section input[type="checkbox"]+label {
+.mood-section input[type="checkbox"]+label,
+.postEmoji {
     display: inline-block;
     padding: 10px;
     cursor: pointer;
@@ -188,7 +190,8 @@ footer {
     margin-bottom: 10px;
 }
 
-.mood-section input[type="checkbox"]:checked+label {
+.mood-section input[type="checkbox"]:checked+label,
+.postEmojiActive {
     border: 1px solid white;
     color: white;
     background-color: #f3c3a5;
@@ -202,6 +205,10 @@ footer {
     .landing {
         height: 44vh;
         margin-bottom: 0px;
+    }
+
+    .landing-mob {
+        height: 89vh;
     }
 
     footer {
@@ -218,6 +225,10 @@ footer {
 
     .navbar.container {
         padding: 2px 10px;
+    }
+
+    .navbar {
+        padding: .5rem 1rem !important;
     }
 }
 
