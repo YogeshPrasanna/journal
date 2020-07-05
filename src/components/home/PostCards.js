@@ -6,6 +6,7 @@ import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import EditPostModalPopup from "./EditPostModalPopup";
 import MemorablePost from "./MemorablePost";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 // import ModalDialog from "react-bootstrap/ModalDialog";
 // import Modal from "react-bootstrap/Modal";
 // import ModalHeader from "react-bootstrap/ModalHeader";
@@ -71,31 +72,49 @@ class PostCards extends Component {
                         };
                         const postMoodObj = post.postMood;
 
+                        const popover = (
+                            <Popover id="popover-basic">
+                                <Popover.Title as="h3" className="modal-header">
+                                    Are you sure ??
+                                </Popover.Title>
+                                <Popover.Content className="modal-content">
+                                    Once deleted you cannot get back this post , are you sure you want to delete
+                                </Popover.Content>
+                                <div className="modal-footer">
+                                    <button className="btn save-btn" onClick={() => this.deletePost(post._id)}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </Popover>
+                        );
+
                         return (
                             <div className="card bg-light" key={post._id} style={{ minWidth: "15rem" }}>
                                 <div className="card-body custom-card">
                                     <h4 className="custom-card-date">
                                         {`${day} ${month} ${year}`}
 
-                                        <span
-                                            onClick={() => this.deletePost(post._id)}
-                                            style={{ float: "right", cursor: "pointer", paddingLeft: "10px" }}
-                                            title="Delete"
-                                        >
-                                            <svg
-                                                className="bi bi-trash-fill"
-                                                width="1em"
-                                                height="1em"
-                                                viewBox="0 0 16 16"
-                                                fill="currentColor"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                        <OverlayTrigger trigger="click" placement="auto" overlay={popover} rootClose>
+                                            <span
+                                                style={{ float: "right", cursor: "pointer", paddingLeft: "10px" }}
+                                                title="Delete"
                                             >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"
-                                                />
-                                            </svg>
-                                        </span>
+                                                <svg
+                                                    className="bi bi-trash-fill"
+                                                    width="1em"
+                                                    height="1em"
+                                                    viewBox="0 0 16 16"
+                                                    fill="currentColor"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"
+                                                    />
+                                                </svg>
+                                            </span>
+                                        </OverlayTrigger>
+
                                         <span
                                             onClick={() => this.editPost(post._id)}
                                             style={{ float: "right", cursor: "pointer" }}

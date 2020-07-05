@@ -222,7 +222,7 @@ class PostCards extends Component {
                                             name="mood-angry"
                                             id="edited-angry"
                                         />
-                                        <label htmlFor="aedited-angry" className="emoji">
+                                        <label htmlFor="edited-angry" className="emoji">
                                             <span role="img" aria-label="angry">
                                                 😠😡
                                             </span>
