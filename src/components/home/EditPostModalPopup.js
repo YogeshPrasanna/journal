@@ -193,7 +193,7 @@ class PostCards extends Component {
                                     });
                                 }}
                             />
-                            <div className="row" style={{ padding: "15px 0" }}>
+                            <div className="row" style={{ padding: "0px" }}>
                                 <div className="col-sm-12" style={{ paddingTop: "6px", marginBottom: "15px" }}>
                                     <TagsInput
                                         value={this.state.postHashtags}
@@ -201,17 +201,16 @@ class PostCards extends Component {
                                         inputProps={this.inputProps()}
                                     />
                                 </div>
-                                <div className="col-sm-2">
+                                <div className="col-sm-12">
                                     <input
                                         type="checkbox"
                                         className="form-control form-control-lg"
                                         checked={this.state.memorablePost}
                                         onChange={this.memorablePostChange}
                                         name="memorablePost"
+                                        style={{ display: "inline", width: "45px" }}
                                     />
-                                </div>
-                                <div className="col-sm-10" style={{ paddingTop: "6px" }}>
-                                    <h4>Was today a memorable Day ?</h4>
+                                    <h4 className="memorablePostLabel">Was today a memorable Day ?</h4>
                                 </div>
                                 <div className="row mood-section">
                                     <span>
