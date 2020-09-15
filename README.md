@@ -1,4 +1,5 @@
 ## JOURNAL
+This is your life - Lets keep a track of it and lets make it memorable day by day
 
 [![journal.png](https://i.postimg.cc/y6Tkv6ym/journal.png)](https://postimg.cc/xqcfd278)
 
