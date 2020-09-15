@@ -1,3 +1,11 @@
+## JOURNAL
+
+[![journal.png](https://i.postimg.cc/y6Tkv6ym/journal.png)](https://postimg.cc/xqcfd278)
+
+## Start Capturing the story of your life 
+
+#### We all have a past, Do we remember the most of it ? No , So here's a tool to write down what happened today, I'm sure you'll enjoy reading all the memories down the lane , when you're at you're older age
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
