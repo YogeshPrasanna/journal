@@ -3,6 +3,8 @@ This is your life - Lets keep a track of it and lets make it memorable day by da
 
 [![journal.png](https://i.postimg.cc/y6Tkv6ym/journal.png)](https://postimg.cc/xqcfd278)
 
+Start running the server locally https://github.com/YogeshPrasanna/journal-server.git before starting the frontend 
+
 ## Start Capturing the story of your life 
 
 #### We all have a past, Do we remember the most of it ? No , So here's a tool to write down what happened today, I'm sure you'll enjoy reading all the memories down the lane , when you're at you're older age
